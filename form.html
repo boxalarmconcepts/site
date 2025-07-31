@@ -2,109 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Box Alarm Concepts</title>
-  <link rel="icon" type="image/png" href="assets/Box Alarm Concepts Final.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You - Box Alarm Concepts</title>
   <style>
     body {
-      margin: 0;
       font-family: Helvetica, sans-serif;
       background-color: #0F0F0F;
       color: #F4F4F4;
+      margin: 0;
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    header img {
-      max-width: 200px;
-      display: block;
-      margin: 0 auto 1rem;
+
+    .logo {
+      max-width: 220px;
+      margin-bottom: 1.5rem;
     }
-    form {
-      background: #1a1a1a;
+
+    .card {
+      background-color: #1A1A1A;
+      border: 1px solid #4A4A4A;
       padding: 2rem;
-      border-radius: 12px;
+      border-radius: 16px;
       max-width: 600px;
-      margin: auto;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     }
-    label {
-      display: block;
-      margin-top: 1rem;
+
+    h1 {
+      color: #D7263D;
+    }
+
+    .ref-id {
+      font-weight: bold;
+      color: #F4F4F4;
+      background-color: #333;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 1rem 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      background-color: #D7263D;
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #a81e30;
+    }
+
+    .socials {
+      margin-top: 2rem;
+    }
+
+    .socials a {
+      margin: 0 0.5rem;
+      color: #F4F4F4;
+      text-decoration: none;
       font-weight: bold;
     }
-    input, textarea, select {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: none;
-      margin-top: 0.5rem;
-      background-color: #333;
-      color: #F4F4F4;
-    }
-    button {
-      background-color: #D7263D;
-      color: #fff;
-      padding: 1rem;
-      margin-top: 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-    }
-    footer {
-      margin-top: 2rem;
-      text-align: center;
-      font-size: 0.85rem;
+
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
       color: #999;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="assets/Box Alarm Concepts Final.png" alt="Box Alarm Concepts Logo" />
-    <h2 style="text-align:center;">Let’s Build Something That Serves</h2>
-  </header>
+  <img src="https://github.com/boxalarmconcepts/site/blob/main/assets/boxalarm-logo.png?raw=true" alt="Box Alarm Concepts Logo" class="logo"/>
 
-  <form action="https://formspree.io/f/your-form-id" method="POST">
-    <label for="name">Full Name *</label>
-    <input type="text" name="name" required />
+  <div class="card">
+    <h1>Thank You!</h1>
+    <p>Your submission has been received successfully.</p>
+    <p>Your Reference ID:</p>
+    <div class="ref-id" id="refIdDisplay">Loading...</div>
 
-    <label for="email">Email Address *</label>
-    <input type="email" name="email" required />
+    <div class="buttons">
+      <a href="https://www.boxalarmconcepts.com">Return to Main Site</a>
+      <a href="https://forms.gle/xzNtM2PgJFq44ScJ6">Submit Another Response</a>
+    </div>
 
-    <label for="phone">Phone Number (optional)</label>
-    <input type="tel" name="phone" />
+    <div class="socials">
+      <a href="https://www.facebook.com/boxalarmconcepts/" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com/boxalarmconcepts/" target="_blank">Instagram</a> |
+      <a href="https://twitter.com/boxalarmconcept" target="_blank">X</a>
+    </div>
 
-    <label for="need">What can we help you with?</label>
-    <textarea name="need" rows="4"></textarea>
+    <div class="footer">
+      Box Alarm Concepts LLC | London, KY
+    </div>
+  </div>
 
-    <label for="beta">Interested in beta testing products?</label>
-    <select name="beta">
-      <option value="">Select one</option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-    </select>
-
-    <label for="agency">Agency / Department (optional)</label>
-    <input type="text" name="agency" />
-
-    <label for="contactMethod">Preferred Contact Method</label>
-    <select name="contactMethod">
-      <option>Email</option>
-      <option>Phone</option>
-      <option>Text</option>
-    </select>
-
-    <button type="submit">Send It</button>
-  </form>
-
-  <footer>
-    <p>Box Alarm Concepts LLC • London, KY</p>
-    <p><a href="https://www.instagram.com/boxalarmconcepts/" target="_blank" style="color:#D7263D;">Instagram</a> |
-       <a href="https://www.facebook.com/boxalarmconcepts/" target="_blank" style="color:#D7263D;">Facebook</a> |
-       <a href="https://twitter.com/boxalarmconcept" target="_blank" style="color:#D7263D;">X</a></p>
-    <p>This site is protected by reCAPTCHA and the Google Privacy Policy applies.</p>
-  </footer>
+  <script>
+    // Extract the "ref" query parameter from the URL
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    document.getElementById("refIdDisplay").textContent = ref || "Unavailable";
+  </script>
 
 </body>
 </html>
