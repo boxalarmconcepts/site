@@ -1,46 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Box Alarm Concepts | Thank You</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Box Alarm Concepts | Submission Received</title>
   <style>
     body {
+      font-family: Helvetica, sans-serif;
       background-color: #0F0F0F;
       color: #F4F4F4;
-      font-family: Helvetica, sans-serif;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       padding: 2rem;
+      text-align: center;
     }
     img {
-      max-width: 140px;
-      margin-bottom: 1rem;
+      max-width: 160px;
+      margin-bottom: 1.5rem;
     }
-    a {
+    h1 {
       color: #D7263D;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+    }
+    .buttons a {
       text-decoration: none;
-      margin: 0 0.5rem;
-    }
-    .social {
-      margin-top: 1.5rem;
-    }
-    .tracking {
-      margin-top: 1rem;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #D7263D;
+      color: white;
+      border-radius: 8px;
       font-weight: bold;
-      color: #D7263D;
+      transition: background-color 0.3s ease;
+    }
+    .buttons a:hover {
+      background-color: #a91c2e;
+    }
+    .socials {
+      margin-top: 2rem;
+    }
+    .socials a {
+      margin: 0 0.5rem;
+      color: #F4F4F4;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <img src="https://drive.google.com/uc?export=view&id=1jDw63w2tpLZ1Ybk3xQYMEVsnihpV3gOh" alt="Box Alarm Concepts Logo">
-  <h1>Thank you for reaching out.</h1>
-  <p>Your message has been received. We'll be in touch shortly.</p>
-  <p class="tracking">Tracking ID: #BAC-[12345]</p>
-  <div class="social">
-    <p>Follow us:</p>
-    <a href="https://www.instagram.com/boxalarmconcepts/" target="_blank">Instagram</a> |
+  <img src="https://drive.google.com/uc?export=view&id=1jDw63w2tpLZ1Ybk3xQYMEVsnihpV3gOh" alt="Box Alarm Concepts Logo" />
+  <h1>Thank You for Your Submission</h1>
+  <p>
+    We’ve received your request and a confirmation email has been sent.  
+    <br><br>
+    Your reference ID is: <strong>#BAC-<span id="refID">0000</span></strong>
+  </p>
+
+  <div class="buttons">
+    <a href="https://forms.gle/xzNtM2PgJFq44ScJ6" target="_blank">Submit Another Request</a>
+    <a href="https://www.boxalarmconcepts.com" target="_blank">Return to Main Site</a>
+  </div>
+
+  <div class="socials">
     <a href="https://www.facebook.com/boxalarmconcepts/" target="_blank">Facebook</a> |
+    <a href="https://www.instagram.com/boxalarmconcepts/" target="_blank">Instagram</a> |
     <a href="https://twitter.com/boxalarmconcept" target="_blank">X</a>
   </div>
+
+  <footer>
+    Box Alarm Concepts LLC | London, KY<br/>
+    This is an automated confirmation page. Please check your email for more details.
+  </footer>
+
+  <script>
+    // Generate a simple reference ID (mock logic)
+    const refID = Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('refID').textContent = refID;
+  </script>
 </body>
 </html>
+
