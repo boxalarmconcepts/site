@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Box Alarm Concepts</title>
+  <link rel="icon" type="image/png" href="assets/Box Alarm Concepts Final.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Helvetica, sans-serif;
+      background-color: #0F0F0F;
+      color: #F4F4F4;
+      padding: 2rem;
+    }
+    header img {
+      max-width: 200px;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+    form {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: none;
+      margin-top: 0.5rem;
+      background-color: #333;
+      color: #F4F4F4;
+    }
+    button {
+      background-color: #D7263D;
+      color: #fff;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="assets/Box Alarm Concepts Final.png" alt="Box Alarm Concepts Logo" />
+    <h2 style="text-align:center;">Let’s Build Something That Serves</h2>
+  </header>
+
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+    <label for="name">Full Name *</label>
+    <input type="text" name="name" required />
+
+    <label for="email">Email Address *</label>
+    <input type="email" name="email" required />
+
+    <label for="phone">Phone Number (optional)</label>
+    <input type="tel" name="phone" />
+
+    <label for="need">What can we help you with?</label>
+    <textarea name="need" rows="4"></textarea>
+
+    <label for="beta">Interested in beta testing products?</label>
+    <select name="beta">
+      <option value="">Select one</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+
+    <label for="agency">Agency / Department (optional)</label>
+    <input type="text" name="agency" />
+
+    <label for="contactMethod">Preferred Contact Method</label>
+    <select name="contactMethod">
+      <option>Email</option>
+      <option>Phone</option>
+      <option>Text</option>
+    </select>
+
+    <button type="submit">Send It</button>
+  </form>
+
+  <footer>
+    <p>Box Alarm Concepts LLC • London, KY</p>
+    <p><a href="https://www.instagram.com/boxalarmconcepts/" target="_blank" style="color:#D7263D;">Instagram</a> |
+       <a href="https://www.facebook.com/boxalarmconcepts/" target="_blank" style="color:#D7263D;">Facebook</a> |
+       <a href="https://twitter.com/boxalarmconcept" target="_blank" style="color:#D7263D;">X</a></p>
+    <p>This site is protected by reCAPTCHA and the Google Privacy Policy applies.</p>
+  </footer>
+
+</body>
+</html>
