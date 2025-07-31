@@ -3,90 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Box Alarm Concepts | Submission Received</title>
+  <title>Box Alarm Concepts | Confirmation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Helvetica, sans-serif;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
       background-color: #0F0F0F;
       color: #F4F4F4;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: rgba(255,255,255,0.03);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
       text-align: center;
     }
-    img {
+    .logo {
       max-width: 160px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     h1 {
       color: #D7263D;
       margin-bottom: 0.5rem;
     }
     p {
-      max-width: 600px;
-      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
-    .buttons a {
-      text-decoration: none;
-      margin: 0.5rem;
-      padding: 0.75rem 1.5rem;
+    .ref-box {
+      background-color: #1C1C1C;
+      border-left: 4px solid #D7263D;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      word-break: break-all;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .btn {
       background-color: #D7263D;
       color: white;
+      padding: 0.75rem 1.25rem;
       border-radius: 8px;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      text-decoration: none;
+      transition: background 0.3s ease;
     }
-    .buttons a:hover {
-      background-color: #a91c2e;
+    .btn:hover {
+      background-color: #a91e2f;
     }
     .socials {
       margin-top: 2rem;
+      font-size: 0.9rem;
     }
     .socials a {
       margin: 0 0.5rem;
       color: #F4F4F4;
-      font-size: 1.4rem;
-      text-decoration: none;
+      text-decoration: underline;
     }
     footer {
-      margin-top: 3rem;
-      font-size: 0.8rem;
+      margin-top: 2rem;
+      font-size: 0.75rem;
       color: #aaa;
     }
   </style>
 </head>
 <body>
-  <img src="https://drive.google.com/uc?export=view&id=1jDw63w2tpLZ1Ybk3xQYMEVsnihpV3gOh" alt="Box Alarm Concepts Logo" />
-  <h1>Thank You for Your Submission</h1>
-  <p>
-    We’ve received your request and a confirmation email has been sent.  
-    <br><br>
-    Your reference ID is: <strong>#BAC-<span id="refID">0000</span></strong>
-  </p>
+  <div class="container">
+    <img src="https://raw.githubusercontent.com/boxalarmconcepts/site/main/assets/boxalarm-logo.png" alt="Box Alarm Concepts Logo" class="logo" />
 
-  <div class="buttons">
-    <a href="https://forms.gle/xzNtM2PgJFq44ScJ6" target="_blank">Submit Another Request</a>
-    <a href="https://www.boxalarmconcepts.com" target="_blank">Return to Main Site</a>
+    <h1>Submission Received</h1>
+    <p>You’re in. We’ve logged your request and sent a confirmation to your inbox.</p>
+    <div class="ref-box">Your Reference ID: <span id="refID">Loading...</span></div>
+    <p>Save this ID if you need to follow up or track your request.</p>
+
+    <div class="buttons">
+      <a class="btn" href="https://forms.gle/xzNtM2PgJFq44ScJ6" target="_blank">Submit Another</a>
+      <a class="btn" href="https://www.boxalarmconcepts.com" target="_blank">Main Site</a>
+    </div>
+
+    <div class="socials">
+      Follow us: 
+      <a href="https://facebook.com/boxalarmconcepts" target="_blank">Facebook</a> |
+      <a href="https://instagram.com/boxalarmconcepts" target="_blank">Instagram</a> |
+      <a href="https://twitter.com/boxalarmconcept" target="_blank">X</a>
+    </div>
+
+    <footer>
+      &copy; 2025 Box Alarm Concepts LLC | London, KY<br/>
+      Built for those who serve. No fluff. No shortcuts.
+    </footer>
   </div>
-
-  <div class="socials">
-    <a href="https://www.facebook.com/boxalarmconcepts/" target="_blank">Facebook</a> |
-    <a href="https://www.instagram.com/boxalarmconcepts/" target="_blank">Instagram</a> |
-    <a href="https://twitter.com/boxalarmconcept" target="_blank">X</a>
-  </div>
-
-  <footer>
-    Box Alarm Concepts LLC | London, KY<br/>
-    This is an automated confirmation page. Please check your email for more details.
-  </footer>
 
   <script>
-    // Generate a simple reference ID (mock logic)
-    const refID = Math.floor(1000 + Math.random() * 9000);
-    document.getElementById('refID').textContent = refID;
+    const urlParams = new URLSearchParams(window.location.search);
+    const refID = urlParams.get('refID');
+    document.getElementById('refID').textContent = refID || 'Unavailable';
   </script>
 </body>
 </html>
