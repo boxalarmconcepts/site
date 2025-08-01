@@ -1,85 +1,151 @@
-<!-- Responder Status -->
-<label for="responderStatus">Are you a responder or civilian?</label>
-<select name="responderStatus" id="responderStatus" required onchange="toggleResponderFields(this.value)">
-  <option value="" disabled selected>Select responder status</option>
-  <option value="Responder">Responder</option>
-  <option value="Civilian">Civilian</option>
-</select>
-
-<!-- Responder Fields -->
-<div id="responderFields" style="display: none; margin-top: 10px;">
-  <label for="responderType">Type of Responder</label>
-  <select name="responderType" id="responderType" onchange="toggleFireFields(this.value)">
-    <option value="" disabled selected>Select responder type</option>
-    <option value="Fire">Fire</option>
-    <option value="EMS">EMS</option>
-    <option value="LEO">Law Enforcement</option>
-    <option value="Military">Military</option>
-    <option value="Other">Other</option>
-  </select>
-</div>
-
-<!-- Civilian Fields -->
-<div id="civilianFields" style="display: none; margin-top: 10px;">
-  <label for="prepperStatus">Are you a preparedness-minded civilian?</label>
-  <select name="prepperStatus" id="prepperStatus">
-    <option value="" disabled selected>Select prepper status</option>
-    <option value="Yes">Yes</option>
-    <option value="No">No</option>
-    <option value="Somewhat">Somewhat</option>
-  </select>
-</div>
-
-<!-- Fire-Specific Fields -->
-<div id="fireFields" style="display: none; margin-top: 10px;">
-  <label for="fireCareerType">Career or Volunteer?</label>
-  <select name="fireCareerType" id="fireCareerType">
-    <option value="" disabled selected>Select career type</option>
-    <option value="Career">Career</option>
-    <option value="Volunteer">Volunteer</option>
-    <option value="Combination">Combination</option>
-  </select>
-</div>
-
-<!-- JavaScript Logic -->
-<script>
-  const responderFields = document.getElementById('responderFields');
-  const civilianFields = document.getElementById('civilianFields');
-  const fireFields = document.getElementById('fireFields');
-  const responderTypeSelect = document.getElementById('responderType');
-
-  function toggleResponderFields(status) {
-    if (status === 'Responder') {
-      responderFields.style.display = 'block';
-      civilianFields.style.display = 'none';
-    } else if (status === 'Civilian') {
-      responderFields.style.display = 'none';
-      civilianFields.style.display = 'block';
-    } else {
-      responderFields.style.display = 'none';
-      civilianFields.style.display = 'none';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Box Alarm Concepts | Contact Form</title>
+  <style>
+    body {
+      background-color: #0F0F0F;
+      color: #F4F4F4;
+      font-family: Helvetica, sans-serif;
+      padding: 2rem;
     }
-
-    // Reset nested logic when switching
-    responderTypeSelect.value = '';
-    toggleFireFields('');
-  }
-
-  function toggleFireFields(type) {
-    if (type === 'Fire') {
-      fireFields.style.display = 'block';
-    } else {
-      fireFields.style.display = 'none';
+    h1 {
+      color: #D7263D;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
-  }
+    form {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      margin-top: 0.25rem;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      background-color: #D7263D;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
 
-  // Ensure form is reset to clean state on load
-  window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('responderStatus').value = '';
-    responderTypeSelect.value = '';
-    document.getElementById('prepperStatus').value = '';
-    document.getElementById('fireCareerType').value = '';
-    toggleResponderFields('');
-    toggleFireFields('');
-  });
-</script>
+  <h1>Contact Box Alarm Concepts</h1>
+
+  <form id="contactForm" action="https://script.google.com/macros/s/AKfycbw6hyCRS8ys7QMx6KwboMBPnfM3C75JWhYxAVzcE1cIyujTwGPFwxtFRXcOv3pke3YS/exec" method="POST">
+
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name" required />
+
+    <label for="email">Email Address</label>
+    <input type="email" name="email" id="email" required />
+
+    <label for="contact">Preferred Contact Method</label>
+    <select name="contact" id="contact" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Email">Email</option>
+      <option value="Phone">Phone</option>
+      <option value="Either">Either</option>
+    </select>
+
+    <label for="inquiry">Inquiry Type</label>
+    <select name="inquiry" id="inquiry" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Custom Order">Custom Order</option>
+      <option value="Product Question">Product Question</option>
+      <option value="Collaboration">Collaboration</option>
+      <option value="General Message">General Message</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea name="message" id="message" rows="5" required></textarea>
+
+    <label for="status">Are you a Responder or Civilian?</label>
+    <select name="status" id="status" required onchange="updateStatusFields()">
+      <option value="" disabled selected>Select one</option>
+      <option value="Responder">Responder</option>
+      <option value="Civilian">Civilian</option>
+    </select>
+
+    <!-- Responder Type -->
+    <div id="responderFields" class="hidden">
+      <label for="responderType">Type of Responder</label>
+      <select name="responderType" id="responderType">
+        <option value="" disabled selected>Select one</option>
+        <option value="Fire">Fire</option>
+        <option value="EMS">EMS</option>
+        <option value="LEO">Law Enforcement</option>
+        <option value="Dispatch">Dispatch</option>
+        <option value="Military">Military</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="agencyName">Agency Name</label>
+      <input type="text" name="agencyName" id="agencyName" />
+
+      <label for="agencySize">Agency Size</label>
+      <input type="text" name="agencySize" id="agencySize" />
+
+      <label for="careerVolunteer">Are you Career, Volunteer, or Both?</label>
+      <select name="careerVolunteer" id="careerVolunteer">
+        <option value="" disabled selected>Select one</option>
+        <option value="Career">Career</option>
+        <option value="Volunteer">Volunteer</option>
+        <option value="Both">Both</option>
+      </select>
+    </div>
+
+    <!-- Civilian Prepper -->
+    <div id="civilianFields" class="hidden">
+      <label for="prepper">Would you consider yourself a prepper?</label>
+      <select name="prepper" id="prepper">
+        <option value="" disabled selected>Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="Somewhat">Somewhat</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function updateStatusFields() {
+      const status = document.getElementById("status").value;
+      const responder = document.getElementById("responderFields");
+      const civilian = document.getElementById("civilianFields");
+
+      if (status === "Responder") {
+        responder.classList.remove("hidden");
+        civilian.classList.add("hidden");
+      } else if (status === "Civilian") {
+        civilian.classList.remove("hidden");
+        responder.classList.add("hidden");
+      } else {
+        responder.classList.add("hidden");
+        civilian.classList.add("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>
