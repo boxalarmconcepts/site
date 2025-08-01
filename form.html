@@ -1,120 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You - Box Alarm Concepts</title>
-  <style>
-    body {
-      font-family: Helvetica, sans-serif;
-      background-color: #0F0F0F;
-      color: #F4F4F4;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .logo {
-      max-width: 220px;
-      margin-bottom: 1.5rem;
-    }
-
-    .card {
-      background-color: #1A1A1A;
-      border: 1px solid #4A4A4A;
-      padding: 2rem;
-      border-radius: 16px;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-
-    h1 {
-      color: #D7263D;
-    }
-
-    .ref-id {
-      font-weight: bold;
-      color: #F4F4F4;
-      background-color: #333;
-      padding: 6px 12px;
-      border-radius: 6px;
-      display: inline-block;
-      margin: 1rem 0;
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
-
-    .buttons a {
-      text-decoration: none;
-      background-color: #D7263D;
-      color: white;
-      padding: 0.75rem 1.25rem;
-      border-radius: 10px;
-      transition: background-color 0.3s;
-    }
-
-    .buttons a:hover {
-      background-color: #a81e30;
-    }
-
-    .socials {
-      margin-top: 2rem;
-    }
-
-    .socials a {
-      margin: 0 0.5rem;
-      color: #F4F4F4;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .footer {
-      margin-top: 3rem;
-      font-size: 0.8rem;
-      color: #999;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Box Alarm Concepts</title>
+<style>
+  body {
+    background-color: #0F0F0F;
+    color: #F4F4F4;
+    font-family: Helvetica, sans-serif;
+    padding: 2rem;
+    max-width: 700px;
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+    color: #D7263D;
+  }
+  form {
+    background: #1A1A1A;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(215, 38, 61, 0.6);
+  }
+  label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.3rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #333;
+    color: #F4F4F4;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  .checkbox-group, .radio-group {
+    margin-top: 0.5rem;
+  }
+  .checkbox-group label, .radio-group label {
+    font-weight: normal;
+    display: block;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+  }
+  button {
+    background-color: #D7263D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+  }
+  button:hover {
+    background-color: #a81e30;
+  }
+  .section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #4A4A4A;
+  }
+  .hidden {
+    display: none;
+  }
+  .note {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 0.5rem;
+  }
+</style>
 </head>
 <body>
 
-  <img src="https://github.com/boxalarmconcepts/site/blob/main/assets/boxalarm-logo.png?raw=true" alt="Box Alarm Concepts Logo" class="logo"/>
+<h1>Contact Box Alarm Concepts</h1>
 
-  <div class="card">
-    <h1>Thank You!</h1>
-    <p>Your submission has been received successfully.</p>
-    <p>Your Reference ID:</p>
-    <div class="ref-id" id="refIdDisplay">Loading...</div>
+<form id="bacForm" method="POST" action="https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec">
 
-    <div class="buttons">
-      <a href="https://www.boxalarmconcepts.com">Return to Main Site</a>
-      <a href="https://forms.gle/xzNtM2PgJFq44ScJ6">Submit Another Response</a>
+  <!-- Basic Info -->
+  <label for="name">Full Name *</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="email">Email Address *</label>
+  <input type="email" id="email" name="email" required />
+
+  <label for="preferredContact">Preferred Contact Method *</label>
+  <select id="preferredContact" name="preferredContact" required>
+    <option value="" disabled selected>Select one</option>
+    <option value="Email">Email</option>
+    <option value="Phone">Phone</option>
+    <option value="Either">Either</option>
+  </select>
+
+  <label for="phone" id="phoneLabel" class="hidden">Phone Number</label>
+  <input type="tel" id="phone" name="phone" class="hidden" placeholder="Include area code" />
+
+  <!-- Contact Type -->
+  <label for="contactType">What best describes your message? *</label>
+  <select id="contactType" name="contactType" required>
+    <option value="" disabled selected>Select one</option>
+    <option value="Support Request">Support Request</option>
+    <option value="Custom Order">Custom Order</option>
+    <option value="New Product Idea">New Product Idea</option>
+    <option value="Partnership Opportunity">Partnership Opportunity</option>
+    <option value="General Feedback">General Feedback</option>
+  </select>
+
+  <!-- Dynamic Sections -->
+
+  <!-- Support Request -->
+  <div id="supportSection" class="section hidden">
+    <label for="supportIssue">Please describe the issue you are experiencing *</label>
+    <textarea id="supportIssue" name="supportIssue"></textarea>
+  </div>
+
+  <!-- Custom Order -->
+  <div id="customOrderSection" class="section hidden">
+    <label for="customOrderDescription">Describe your custom order *</label>
+    <textarea id="customOrderDescription" name="customOrderDescription"></textarea>
+  </div>
+
+  <!-- New Product Idea -->
+  <div id="newIdeaSection" class="section hidden">
+    <label for="ideaDescription">Explain your product idea *</label>
+    <textarea id="ideaDescription" name="ideaDescription"></textarea>
+    <label for="betaTesterInterest" class="checkbox-group">
+      <input type="checkbox" id="betaTesterInterest" name="betaTesterInterest" value="Yes" />
+      I am interested in being a beta tester
+    </label>
+  </div>
+
+  <!-- Partnership Opportunity -->
+  <div id="partnershipSection" class="section hidden">
+    <label for="partnerOrgName">Organization / Brand Name *</label>
+    <input type="text" id="partnerOrgName" name="partnerOrgName" />
+
+    <label for="partnerWebsite">Website or Social Link *</label>
+    <input type="text" id="partnerWebsite" name="partnerWebsite" />
+
+    <label for="partnershipDescription">Describe your proposal *</label>
+    <textarea id="partnershipDescription" name="partnershipDescription"></textarea>
+  </div>
+
+  <!-- General Feedback -->
+  <div id="feedbackSection" class="section hidden">
+    <label for="feedbackMessage">Your feedback or comments *</label>
+    <textarea id="feedbackMessage" name="feedbackMessage"></textarea>
+    <label for="betaTesterFeedbackInterest" class="checkbox-group">
+      <input type="checkbox" id="betaTesterFeedbackInterest" name="betaTesterInterest" value="Yes" />
+      I am interested in being a beta tester
+    </label>
+  </div>
+
+  <!-- Demographic Section -->
+  <div class="section">
+    <h3>About You (Optional)</h3>
+    <label for="userType">I am a… *</label>
+    <select id="userType" name="userType" required>
+      <option value="" disabled selected>Select one</option>
+      <option value="Responder">Responder</option>
+      <option value="Civilian">Civilian</option>
+      <option value="Both">Both</option>
+    </select>
+
+    <!-- Responder Specific -->
+    <div id="responderSection" class="hidden">
+      <label>Type of Responder (check all that apply):</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="responderType" value="Fire" /> Fire</label>
+        <label><input type="checkbox" name="responderType" value="EMS" /> EMS</label>
+        <label><input type="checkbox" name="responderType" value="Law Enforcement" /> Law Enforcement</label>
+        <label><input type="checkbox" name="responderType" value="Military" /> Military</label>
+        <label><input type="checkbox" name="responderType" value="Dispatcher" /> Dispatcher</label>
+        <label><input type="checkbox" name="responderType" value="Other" /> Other</label>
+      </div>
+
+      <label for="agencyName">Agency / Department Name</label>
+      <input type="text" id="agencyName" name="agencyName" />
+
+      <label for="agencySize">Agency / Department Size</label>
+      <select id="agencySize" name="agencySize">
+        <option value="" disabled selected>Select one</option>
+        <option value="Solo">Solo</option>
+        <option value="Less than 10">Less than 10</option>
+        <option value="10-50">10-50</option>
+        <option value="More than 50">More than 50</option>
+      </select>
     </div>
 
-    <div class="socials">
-      <a href="https://www.facebook.com/boxalarmconcepts/" target="_blank">Facebook</a> |
-      <a href="https://www.instagram.com/boxalarmconcepts/" target="_blank">Instagram</a> |
-      <a href="https://twitter.com/boxalarmconcept" target="_blank">X</a>
-    </div>
-
-    <div class="footer">
-      Box Alarm Concepts LLC | London, KY
+    <!-- Civilian Specific -->
+    <div id="civilianSection" class="hidden">
+      <label for="civilianInterest">As a civilian, I am interested in (check all that apply):</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="civilianInterest" value="Prepper" /> Prepper</label>
+        <label><input type="checkbox" name="civilianInterest" value="Maker/DIY" /> Maker/DIY</label>
+        <label><input type="checkbox" name="civilianInterest" value="Mental Resilience" /> Mental Resilience</label>
+        <label><input type="checkbox" name="civilianInterest" value="Supporting Responders" /> Supporting Responders</label>
+        <label><input type="checkbox" name="civilianInterest" value="Tactical Gear" /> Tactical Gear</label>
+        <label><input type="checkbox" name="civilianInterest" value="Other" /> Other</label>
+      </div>
     </div>
   </div>
 
-  <script>
-    // Extract the "ref" query parameter from the URL
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref");
-    document.getElementById("refIdDisplay").textContent = ref || "Unavailable";
-  </script>
+  <button type="submit">Send It</button>
+
+  <p class="note">* Required fields</p>
+</form>
+
+<script>
+  // Helper to show/hide sections
+  function toggleVisibility(id, show) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('hidden', !show);
+  }
+
+  // Phone input toggling based on preferred contact method
+  document.getElementById('preferredContact').addEventListener('change', function() {
+    const val = this.value;
+    const showPhone = (val === 'Phone' || val === 'Either');
+    toggleVisibility('phone', showPhone);
+    toggleVisibility('phoneLabel', showPhone);
+    document.getElementById('phone').required = showPhone;
+  });
+
+  // Contact type dynamic sections
+  document.getElementById('contactType').addEventListener('change', function() {
+    const val = this.value;
+    // Hide all first
+    ['supportSection','customOrderSection','newIdeaSection','partnershipSection','feedbackSection']
+      .forEach(id => toggleVisibility(id, false));
+
+    // Show the right section
+    if(val === 'Support Request') toggleVisibility('supportSection', true);
+    else if(val === 'Custom Order') toggleVisibility('customOrderSection', true);
+    else if(val === 'New Product Idea') toggleVisibility('newIdeaSection', true);
+    else if(val === 'Partnership Opportunity') toggleVisibility('partnershipSection', true);
+    else if(val === 'General Feedback') toggleVisibility('feedbackSection', true);
+  });
+
+  // User type dynamic sections
+  document.getElementById('userType').addEventListener('change', function() {
+    const val = this.value;
+    toggleVisibility('responderSection', val === 'Responder' || val === 'Both');
+    toggleVisibility('civilianSection', val === 'Civilian' || val === 'Both');
+  });
+</script>
 
 </body>
 </html>
