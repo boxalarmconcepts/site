@@ -3,117 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Box Alarm Concepts | Contact + Custom Orders</title>
+  <title>Box Alarm Concepts – Contact & Custom Order Form</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <h1>Contact & Custom Order Form</h1>
-    <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbw6hyCRS8ys7QMx6KwboMBPnfM3C75JWhYxAVzcE1cIyujTwGPFwxtFRXcOv3pke3YS/exec">
+  <div class="container">
+    <header>
+      <img src="logo.png" alt="Box Alarm Concepts Logo" class="logo" />
+      <h1>Custom Order & Contact Form</h1>
+      <p>Tell us what you're looking for — we'll get back to you ASAP.</p>
+    </header>
 
-      <!-- Name -->
-      <label for="name">Full Name *</label>
-      <input type="text" name="name" id="name" required />
+    <form id="contact-form">
+      <div class="field-group">
+        <label for="name">Full Name *</label>
+        <input type="text" name="name" id="name" required />
+      </div>
 
-      <!-- Email -->
-      <label for="email">Email *</label>
-      <input type="email" name="email" id="email" required />
+      <div class="field-group">
+        <label for="email">Email *</label>
+        <input type="email" name="email" id="email" required />
+      </div>
 
-      <!-- Phone (Optional) -->
-      <label for="phone">Phone (optional)</label>
-      <input type="tel" name="phone" id="phone" />
+      <div class="field-group">
+        <label for="phone">Phone Number (optional)</label>
+        <input type="tel" name="phone" id="phone" />
+      </div>
 
-      <!-- Preferred Contact Method -->
-      <label for="contactMethod">Preferred Contact Method *</label>
-      <select name="contactMethod" id="contactMethod" required>
-        <option value="" disabled selected>Select one</option>
-        <option value="Email">Email</option>
-        <option value="Phone">Phone</option>
-      </select>
+      <div class="field-group">
+        <label for="preferredContact">Preferred Contact Method *</label>
+        <select name="preferredContact" id="preferredContact" required>
+          <option value="" disabled selected>Select</option>
+          <option value="Email">Email</option>
+          <option value="Phone">Phone</option>
+          <option value="Either">Either</option>
+        </select>
+      </div>
 
-      <!-- Inquiry Type -->
-      <label for="inquiryType">Inquiry Type *</label>
-      <select name="inquiryType" id="inquiryType" required>
-        <option value="" disabled selected>Select one</option>
-        <option value="General Question">General Question</option>
-        <option value="Custom Order">Custom Order</option>
-        <option value="Quote Request">Quote Request</option>
-        <option value="Other">Other</option>
-      </select>
+      <div class="field-group">
+        <label for="responderStatus">Are you a responder or civilian? *</label>
+        <select name="responderStatus" id="responderStatus" required>
+          <option value="" disabled selected>Select</option>
+          <option value="Responder">Responder</option>
+          <option value="Civilian">Civilian</option>
+        </select>
+      </div>
 
-      <!-- Responder or Civilian -->
-      <label for="responderStatus">Are you a Responder or Civilian? *</label>
-      <select name="responderStatus" id="responderStatus" required onchange="toggleResponderFields()">
-        <option value="" disabled selected>Select one</option>
-        <option value="Responder">Responder</option>
-        <option value="Civilian">Civilian</option>
-      </select>
-
-      <!-- Type of Responder (Conditional) -->
-      <div id="responderFields" style="display: none;">
-        <label for="responderType">Responder Type *</label>
+      <div class="field-group conditional" id="responderTypeGroup" style="display: none;">
+        <label for="responderType">Type of Responder *</label>
         <select name="responderType" id="responderType">
-          <option value="" disabled selected>Select one</option>
+          <option value="" disabled selected>Select</option>
           <option value="Fire">Fire</option>
-          <option value="EMS">EMS</option>
-          <option value="Law Enforcement">Law Enforcement</option>
-          <option value="Dispatcher/Comms">Dispatcher/Comms</option>
-          <option value="Military">Military</option>
+          <option value="LEO">Law Enforcement</option>
+          <option value="EMT/Medic">EMT/Medic</option>
           <option value="Other">Other</option>
         </select>
-
-        <!-- Fire-specific fields -->
-        <div id="fireFields" style="display: none;">
-          <label for="careerVolunteer">Are you Career or Volunteer? *</label>
-          <select name="careerVolunteer" id="careerVolunteer">
-            <option value="" disabled selected>Select one</option>
-            <option value="Career">Career</option>
-            <option value="Volunteer">Volunteer</option>
-            <option value="Both">Both</option>
-          </select>
-        </div>
-
-        <label for="agencyName">Agency/Department Name *</label>
-        <input type="text" name="agencyName" id="agencyName" />
-
-        <label for="agencySize">Agency/Department Size *</label>
-        <input type="text" name="agencySize" id="agencySize" />
       </div>
 
-      <!-- Civilian-specific fields -->
-      <div id="civilianFields" style="display: none;">
-        <label for="prepperStatus">Are you preparedness-minded? *</label>
-        <select name="prepperStatus" id="prepperStatus">
-          <option value="" disabled selected>Select one</option>
+      <div class="field-group conditional" id="civilianPrepperGroup" style="display: none;">
+        <label for="civilianPrepper">Are you a preparedness-minded civilian?</label>
+        <select name="civilianPrepper" id="civilianPrepper">
+          <option value="" disabled selected>Select</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
-          <option value="Somewhat">Somewhat</option>
         </select>
       </div>
 
-      <!-- Message -->
-      <label for="message">Message *</label>
-      <textarea name="message" id="message" rows="5" required></textarea>
+      <div class="field-group conditional" id="fireCareerGroup" style="display: none;">
+        <label for="careerStatus">Are you career or volunteer? *</label>
+        <select name="careerStatus" id="careerStatus">
+          <option value="" disabled selected>Select</option>
+          <option value="Career">Career</option>
+          <option value="Volunteer">Volunteer</option>
+        </select>
+      </div>
 
-      <!-- Submit Button -->
-      <button type="submit">Submit</button>
+      <div class="field-group conditional" id="agencyGroup" style="display: none;">
+        <label for="agency">Agency Name and Approximate Size *</label>
+        <input type="text" name="agency" id="agency" />
+      </div>
+
+      <div class="field-group">
+        <label for="inquiryType">What can we help you with? *</label>
+        <select name="inquiryType" id="inquiryType" required>
+          <option value="" disabled selected>Select</option>
+          <option value="Custom Order Request">Custom Order Request</option>
+          <option value="Design Collaboration">Design Collaboration</option>
+          <option value="Bulk or Department Order">Bulk or Department Order</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="message">Tell us more *</label>
+        <textarea name="message" id="message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
     </form>
-  </main>
+  </div>
 
-  <script>
-    function toggleResponderFields() {
-      const status = document.getElementById("responderStatus").value;
-      const responderFields = document.getElementById("responderFields");
-      const civilianFields = document.getElementById("civilianFields");
-
-      responderFields.style.display = status === "Responder" ? "block" : "none";
-      civilianFields.style.display = status === "Civilian" ? "block" : "none";
-    }
-
-    document.getElementById("responderType").addEventListener("change", function () {
-      const fireFields = document.getElementById("fireFields");
-      fireFields.style.display = this.value === "Fire" ? "block" : "none";
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
