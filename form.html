@@ -2,97 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact | Box Alarm Concepts</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0F0F0F;
+      color: #F4F4F4;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 180px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+    .inline-label {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+    button {
+      margin-top: 25px;
+      background-color: #D7263D;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #b02032;
+    }
+  </style>
 </head>
 <body>
-  <div class="form-container">
-    <img src="assets/boxalarm-logo.png" alt="Box Alarm Concepts Logo" class="logo" />
+  <img src="assets/boxalarm-logo.png" alt="Box Alarm Concepts Logo" class="logo" />
+  <h1>Contact Box Alarm Concepts</h1>
+  <form id="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec">
+    <label for="name">Name:</label>
+    <input id="name" name="name" type="text" required />
 
-    <h1>Contact Box Alarm Concepts</h1>
-    <form id="contact-form" action="https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec" method="POST">
-      
-      <label>Name:</label>
-      <input type="text" name="name" required>
+    <label for="email">Email:</label>
+    <input id="email" name="email" type="email" required />
 
-      <label>Email:</label>
-      <input type="email" name="email" required>
+    <label for="phone">Phone Number (optional):</label>
+    <input id="phone" name="phone" type="text" />
 
-      <label>Phone Number (optional):</label>
-      <input type="text" name="phone">
+    <label>Preferred Contact Method:</label>
+    <label class="inline-label"><input type="radio" name="contact_method" value="Email" checked /> Email</label>
+    <label class="inline-label"><input type="radio" name="contact_method" value="Phone" /> Phone</label>
+    <label class="inline-label"><input type="radio" name="contact_method" value="Either" /> Either</label>
 
-      <label>Preferred Contact Method:</label>
-      <label><input type="radio" name="contact_method" value="Email" checked> Email</label>
-      <label><input type="radio" name="contact_method" value="Phone"> Phone</label>
-      <label><input type="radio" name="contact_method" value="Either"> Either</label>
+    <label for="contact_type">Contact Type:</label>
+    <select id="contact_type" name="contact_type" required>
+      <option value="Custom Order">Custom Order</option>
+      <option value="Product Question">Product Question</option>
+      <option value="Suggestion">Suggestion</option>
+      <option value="General Inquiry">General Inquiry</option>
+      <option value="Other">Other</option>
+    </select>
 
-      <label>Contact Type:</label>
-      <select name="contact_type" required>
-        <option value="Custom Order">Custom Order</option>
-        <option value="Product Question">Product Question</option>
-        <option value="Suggestion">Suggestion</option>
-        <option value="General Inquiry">General Inquiry</option>
+    <label>Are you a responder or civilian?</label>
+    <label class="inline-label"><input type="radio" name="responder_status" value="Responder" onclick="toggleResponder(true)" /> Responder</label>
+    <label class="inline-label"><input type="radio" name="responder_status" value="Civilian" onclick="toggleResponder(false)" /> Civilian</label>
+
+    <div id="responder-section" style="display:none; margin-top: 10px;">
+      <label for="responder_type">Type of Responder:</label>
+      <select id="responder_type" name="responder_type" onchange="toggleFireFields(this.value)">
+        <option value="">Select</option>
+        <option value="Fire">Fire</option>
+        <option value="EMS">EMS</option>
+        <option value="LEO">LEO</option>
+        <option value="Dispatch">Dispatch</option>
+        <option value="Military">Military</option>
         <option value="Other">Other</option>
       </select>
 
-      <label>Are you a responder or civilian?</label>
-      <label><input type="radio" name="responder_status" value="Responder" onclick="toggleResponder(true)"> Responder</label>
-      <label><input type="radio" name="responder_status" value="Civilian" onclick="toggleResponder(false)"> Civilian</label>
-
-      <div id="responder-section" style="display:none;">
-        <label>Type of Responder:</label>
-        <select name="responder_type" onchange="toggleFireFields(this.value)">
-          <option value="">Select</option>
-          <option value="Fire">Fire</option>
-          <option value="EMS">EMS</option>
-          <option value="LEO">LEO</option>
-          <option value="Dispatch">Dispatch</option>
-          <option value="Military">Military</option>
-          <option value="Other">Other</option>
-        </select>
-
-        <div id="fire-options" style="display:none;">
-          <label>Career or Volunteer:</label>
-          <label><input type="radio" name="fire_type" value="Career"> Career</label>
-          <label><input type="radio" name="fire_type" value="Volunteer"> Volunteer</label>
-          <label><input type="radio" name="fire_type" value="Both"> Both</label>
-        </div>
-
-        <label>Agency Name:</label>
-        <input type="text" name="agency_name">
-
-        <label>Agency Size:</label>
-        <input type="number" name="agency_size" min="1">
+      <div id="fire-options" style="display:none; margin-top: 10px;">
+        <label>Career or Volunteer:</label>
+        <label class="inline-label"><input type="radio" name="fire_type" value="Career" /> Career</label>
+        <label class="inline-label"><input type="radio" name="fire_type" value="Volunteer" /> Volunteer</label>
+        <label class="inline-label"><input type="radio" name="fire_type" value="Both" /> Both</label>
       </div>
 
-      <div id="civilian-section" style="display:none;">
-        <label>Do you consider yourself a prepper?</label>
-        <label><input type="radio" name="prepper" value="Yes"> Yes</label>
-        <label><input type="radio" name="prepper" value="No"> No</label>
-        <label><input type="radio" name="prepper" value="Somewhat"> Somewhat</label>
-      </div>
+      <label for="agency_name">Agency Name:</label>
+      <input id="agency_name" name="agency_name" type="text" />
 
-      <label>Message / Details:</label>
-      <textarea name="message" required></textarea>
+      <label for="agency_size">Agency Size:</label>
+      <input id="agency_size" name="agency_size" type="number" min="1" />
+    </div>
 
-      <label>Are you interested in beta testing?</label>
-      <label><input type="radio" name="beta" value="Yes"> Yes</label>
-      <label><input type="radio" name="beta" value="No" checked> No</label>
+    <div id="civilian-section" style="display:none; margin-top: 10px;">
+      <label>Do you consider yourself a prepper?</label>
+      <label class="inline-label"><input type="radio" name="prepper" value="Yes" /> Yes</label>
+      <label class="inline-label"><input type="radio" name="prepper" value="No" /> No</label>
+      <label class="inline-label"><input type="radio" name="prepper" value="Somewhat" /> Somewhat</label>
+    </div>
 
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+    <label for="message">Message / Details:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <label>Are you interested in beta testing?</label>
+    <label class="inline-label"><input type="radio" name="beta" value="Yes" /> Yes</label>
+    <label class="inline-label"><input type="radio" name="beta" value="No" checked /> No</label>
+
+    <button type="submit">Submit</button>
+  </form>
 
   <script>
     function toggleResponder(isResponder) {
-      document.getElementById("responder-section").style.display = isResponder ? "block" : "none";
-      document.getElementById("civilian-section").style.display = isResponder ? "none" : "block";
+      document.getElementById('responder-section').style.display = isResponder ? 'block' : 'none';
+      document.getElementById('civilian-section').style.display = isResponder ? 'none' : 'block';
     }
 
     function toggleFireFields(value) {
-      const fireOptions = document.getElementById("fire-options");
-      fireOptions.style.display = (value === "Fire") ? "block" : "none";
+      document.getElementById('fire-options').style.display = value === 'Fire' ? 'block' : 'none';
     }
   </script>
 </body>
