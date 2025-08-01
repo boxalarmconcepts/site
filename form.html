@@ -3,106 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Box Alarm Concepts – Contact & Custom Order Form</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Contact & Custom Order Form | Box Alarm Concepts</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap">
+  <style>
+    body {
+      font-family: Helvetica, sans-serif;
+      background-color: #0F0F0F;
+      color: #F4F4F4;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #D7263D;
+      font-size: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background-color: #1a1a1a;
+      color: #F4F4F4;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #aaa;
+    }
+    button {
+      background-color: #D7263D;
+      color: white;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #a91e2d;
+    }
+    .logo {
+      max-width: 220px;
+      margin-bottom: 2rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="logo.png" alt="Box Alarm Concepts Logo" class="logo" />
-      <h1>Custom Order & Contact Form</h1>
-      <p>Tell us what you're looking for — we'll get back to you ASAP.</p>
-    </header>
+  <img class="logo" src="https://github.com/boxalarmconcepts/site/blob/main/assets/boxalarm-logo.png?raw=true" alt="Box Alarm Concepts Logo" />
+  <h1>Contact & Custom Order Request</h1>
+  <form id="contactForm">
+    <label for="name">Name*</label>
+    <input type="text" name="name" required placeholder="Your full name" />
 
-    <form id="contact-form">
-      <div class="field-group">
-        <label for="name">Full Name *</label>
-        <input type="text" name="name" id="name" required />
-      </div>
+    <label for="email">Email*</label>
+    <input type="email" name="email" required placeholder="you@example.com" />
 
-      <div class="field-group">
-        <label for="email">Email *</label>
-        <input type="email" name="email" id="email" required />
-      </div>
+    <label for="contactMethod">Preferred Contact Method*</label>
+    <select name="contactMethod" required>
+      <option value="" disabled selected>Select one</option>
+      <option value="Email">Email</option>
+      <option value="Phone">Phone</option>
+      <option value="Either">Either</option>
+    </select>
 
-      <div class="field-group">
-        <label for="phone">Phone Number (optional)</label>
-        <input type="tel" name="phone" id="phone" />
-      </div>
+    <label for="phone">Phone (optional)</label>
+    <input type="tel" name="phone" placeholder="(123) 456-7890" />
 
-      <div class="field-group">
-        <label for="preferredContact">Preferred Contact Method *</label>
-        <select name="preferredContact" id="preferredContact" required>
-          <option value="" disabled selected>Select</option>
-          <option value="Email">Email</option>
-          <option value="Phone">Phone</option>
-          <option value="Either">Either</option>
-        </select>
-      </div>
+    <label for="inquiryType">Inquiry Type*</label>
+    <select name="inquiryType" required>
+      <option value="" disabled selected>Select one</option>
+      <option value="Custom Order">Custom Order</option>
+      <option value="Idea Submission">Idea Submission</option>
+      <option value="General Support">General Support</option>
+      <option value="Collaboration Opportunity">Collaboration Opportunity</option>
+      <option value="Other">Other</option>
+    </select>
 
-      <div class="field-group">
-        <label for="responderStatus">Are you a responder or civilian? *</label>
-        <select name="responderStatus" id="responderStatus" required>
-          <option value="" disabled selected>Select</option>
-          <option value="Responder">Responder</option>
-          <option value="Civilian">Civilian</option>
-        </select>
-      </div>
+    <label for="message">Tell us more*</label>
+    <textarea name="message" rows="5" required placeholder="Please provide details here..."></textarea>
 
-      <div class="field-group conditional" id="responderTypeGroup" style="display: none;">
-        <label for="responderType">Type of Responder *</label>
-        <select name="responderType" id="responderType">
-          <option value="" disabled selected>Select</option>
-          <option value="Fire">Fire</option>
-          <option value="LEO">Law Enforcement</option>
-          <option value="EMT/Medic">EMT/Medic</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
+    <label for="responderStatus">Are you a responder or civilian?*</label>
+    <select name="responderStatus" required onchange="toggleResponderFields(this.value)">
+      <option value="" disabled selected>Select one</option>
+      <option value="Responder">Responder</option>
+      <option value="Civilian">Civilian</option>
+    </select>
 
-      <div class="field-group conditional" id="civilianPrepperGroup" style="display: none;">
-        <label for="civilianPrepper">Are you a preparedness-minded civilian?</label>
-        <select name="civilianPrepper" id="civilianPrepper">
-          <option value="" disabled selected>Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
+    <div id="responderFields" style="display:none;">
+      <label for="responderType">Type of Responder</label>
+      <select name="responderType" onchange="toggleFireFields(this.value)">
+        <option value="" disabled selected>Select one</option>
+        <option value="Fire">Fire</option>
+        <option value="EMS">EMS</option>
+        <option value="LEO">Law Enforcement</option>
+        <option value="Military">Military</option>
+        <option value="Other">Other</option>
+      </select>
 
-      <div class="field-group conditional" id="fireCareerGroup" style="display: none;">
-        <label for="careerStatus">Are you career or volunteer? *</label>
-        <select name="careerStatus" id="careerStatus">
-          <option value="" disabled selected>Select</option>
+      <div id="fireFields" style="display:none;">
+        <label for="fireType">Are you Career or Volunteer?</label>
+        <select name="fireType">
+          <option value="" disabled selected>Select one</option>
           <option value="Career">Career</option>
           <option value="Volunteer">Volunteer</option>
         </select>
       </div>
+    </div>
 
-      <div class="field-group conditional" id="agencyGroup" style="display: none;">
-        <label for="agency">Agency Name and Approximate Size *</label>
-        <input type="text" name="agency" id="agency" />
-      </div>
+    <div id="civilianFields" style="display:none;">
+      <label for="prepperStatus">Do you consider yourself a prepper?</label>
+      <select name="prepperStatus">
+        <option value="" disabled selected>Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
 
-      <div class="field-group">
-        <label for="inquiryType">What can we help you with? *</label>
-        <select name="inquiryType" id="inquiryType" required>
-          <option value="" disabled selected>Select</option>
-          <option value="Custom Order Request">Custom Order Request</option>
-          <option value="Design Collaboration">Design Collaboration</option>
-          <option value="Bulk or Department Order">Bulk or Department Order</option>
-          <option value="General Inquiry">General Inquiry</option>
-        </select>
-      </div>
+    <label for="agency">Agency Name</label>
+    <input type="text" name="agency" placeholder="Your agency or organization" />
 
-      <div class="field-group">
-        <label for="message">Tell us more *</label>
-        <textarea name="message" id="message" rows="5" required></textarea>
-      </div>
+    <label for="agencySize">Agency Size (Approximate)</label>
+    <input type="text" name="agencySize" placeholder="Number of members/employees" />
 
-      <button type="submit" class="submit-btn">Submit</button>
-    </form>
-  </div>
+    <button type="submit">Submit</button>
+  </form>
 
-  <script src="script.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+
+    function toggleResponderFields(status) {
+      const responderFields = document.getElementById('responderFields');
+      const civilianFields = document.getElementById('civilianFields');
+      const fireFields = document.getElementById('fireFields');
+
+      responderFields.style.display = (status === 'Responder') ? 'block' : 'none';
+      civilianFields.style.display = (status === 'Civilian') ? 'block' : 'none';
+
+      // Reset dependent selects when hidden
+      if (status !== 'Responder') {
+        document.querySelector('select[name="responderType"]').selectedIndex = 0;
+        fireFields.style.display = 'none';
+        document.querySelector('select[name="fireType"]').selectedIndex = 0;
+      }
+      if (status !== 'Civilian') {
+        document.querySelector('select[name="prepperStatus"]').selectedIndex = 0;
+      }
+    }
+
+    function toggleFireFields(value) {
+      const fireFields = document.getElementById('fireFields');
+      fireFields.style.display = (value === 'Fire') ? 'block' : 'none';
+      if(value !== 'Fire') {
+        document.querySelector('select[name="fireType"]').selectedIndex = 0;
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbw6hyCRS8ys7QMx6KwboMBPnfM3C75JWhYxAVzcE1cIyujTwGPFwxtFRXcOv3pke3YS/exec", {
+          method: "POST",
+          body: data
+        });
+
+        if (!response.ok) throw new Error("Network response was not ok");
+
+        const json = await response.json();
+
+        if (json.status === "success" && json.redirect) {
+          window.location.href = json.redirect;
+        } else {
+          alert("Submission succeeded but no redirect URL provided.");
+        }
+      } catch (error) {
+        alert("Submission failed: " + error.message);
+      }
+    });
+  </script>
 </body>
 </html>
