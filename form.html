@@ -126,8 +126,15 @@
         method: "POST",
         body: data,
       });
-      if (response.ok) {
-        window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
+    if (response.ok) {
+  const json = await response.json();
+  if (json.redirect) {
+    window.location.href = json.redirect;
+  } else {
+    window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
+  }
+}
+
       } else {
         alert("Submission failed. Please try again.");
       }
