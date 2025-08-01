@@ -1,83 +1,73 @@
 <script>
-  const form = document.getElementById('contactForm');
-
-  // Show/hide responder or civilian fields based on responderStatus select value
-  function toggleResponderFields(status) {
+  window.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const responderStatusSelect = document.querySelector('select[name="responderStatus"]');
+    const responderTypeSelect = document.querySelector('select[name="responderType"]');
     const responderFields = document.getElementById('responderFields');
     const civilianFields = document.getElementById('civilianFields');
     const fireFields = document.getElementById('fireFields');
 
-    if (status === 'Responder') {
-      responderFields.style.display = 'block';
-      civilianFields.style.display = 'none';
-    } else if (status === 'Civilian') {
-      responderFields.style.display = 'none';
-      civilianFields.style.display = 'block';
-    } else {
-      responderFields.style.display = 'none';
-      civilianFields.style.display = 'none';
+    function toggleResponderFields(status) {
+      if (status === 'Responder') {
+        responderFields.style.display = 'block';
+        civilianFields.style.display = 'none';
+      } else if (status === 'Civilian') {
+        responderFields.style.display = 'none';
+        civilianFields.style.display = 'block';
+      } else {
+        responderFields.style.display = 'none';
+        civilianFields.style.display = 'none';
+      }
+      // Reset responderType and hide fire fields when responderFields hidden
+      if (responderFields.style.display === 'none') {
+        responderTypeSelect.value = '';
+        fireFields.style.display = 'none';
+      }
     }
 
-    // Reset fireFields when responderStatus changes
-    fireFields.style.display = 'none';
-
-    // Reset responderType select when responderFields hidden
-    if (responderFields.style.display === 'none') {
-      document.querySelector('select[name="responderType"]').value = '';
+    function toggleFireFields(type) {
+      if (type === 'Fire') {
+        fireFields.style.display = 'block';
+      } else {
+        fireFields.style.display = 'none';
+      }
     }
-  }
 
-  // Show/hide fireType field when responderType is Fire
-  function toggleFireFields(type) {
-    const fireFields = document.getElementById('fireFields');
-    if (type === 'Fire') {
-      fireFields.style.display = 'block';
-    } else {
-      fireFields.style.display = 'none';
-    }
-  }
-
-  // Event listeners for toggling fields
-  document.querySelector('select[name="responderStatus"]').addEventListener('change', (e) => {
-    toggleResponderFields(e.target.value);
-  });
-
-  document.querySelector('select[name="responderType"]').addEventListener('change', (e) => {
-    toggleFireFields(e.target.value);
-  });
-
-  // Initialize field visibility on page load
-  window.addEventListener('DOMContentLoaded', () => {
-    const responderStatusSelect = document.querySelector('select[name="responderStatus"]');
-    const responderTypeSelect = document.querySelector('select[name="responderType"]');
-
+    // Initialize visibility on load
     toggleResponderFields(responderStatusSelect.value);
     toggleFireFields(responderTypeSelect.value);
-  });
 
-  // Form submit handler
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
+    // Event listeners
+    responderStatusSelect.addEventListener('change', (e) => {
+      toggleResponderFields(e.target.value);
+    });
 
-    try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec", {
-        method: "POST",
-        body: data,
-      });
+    responderTypeSelect.addEventListener('change', (e) => {
+      toggleFireFields(e.target.value);
+    });
 
-      if (response.ok) {
-        const json = await response.json();
-        if (json.redirect) {
-          window.location.href = json.redirect;
+    // Submit handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec", {
+          method: "POST",
+          body: data,
+        });
+        if (response.ok) {
+          const json = await response.json();
+          if (json.redirect) {
+            window.location.href = json.redirect;
+          } else {
+            window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
+          }
         } else {
-          window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
+          alert("Submission failed. Please try again.");
         }
-      } else {
-        alert("Submission failed. Please try again.");
+      } catch (error) {
+        alert("There was an error submitting the form: " + error.message);
       }
-    } catch (error) {
-      alert("There was an error submitting the form: " + error.message);
-    }
+    });
   });
 </script>
