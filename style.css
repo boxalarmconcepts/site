@@ -1,76 +1,76 @@
-body {
-  font-family: 'Helvetica', sans-serif;
-  background-color: #0F0F0F;
-  color: #F4F4F4;
-  margin: 0;
-  padding: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Box Alarm Concepts | Contact</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://boxalarmconcepts.github.io/site/assets/favicon.png" />
+</head>
+<body>
+  <div class="container">
+    <img src="assets/bac-logo.png" alt="Box Alarm Concepts Logo" class="logo" />
 
-.container {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #1C1C1C;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #D7263D55;
-}
+    <h1>Custom Order / Contact Form</h1>
+    <p>Get in touch or request a custom quote. We'll get back with you fast.</p>
 
-.logo {
-  max-width: 150px;
-  display: block;
-  margin: 0 auto 1rem;
-}
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="text" name="agency" placeholder="Agency Name (if applicable)" />
+      <select name="status" required>
+        <option value="">Responder or Civilian?</option>
+        <option value="responder">Responder</option>
+        <option value="civilian">Civilian</option>
+      </select>
+      <textarea name="message" placeholder="How can we help you?" required></textarea>
 
-header h1 {
-  text-align: center;
-  color: #D7263D;
-  margin-bottom: 0.5rem;
-}
+      <button type="submit" id="submit-btn">Send</button>
+      <p id="loading-text" style="display:none;">Sending...</p>
+    </form>
 
-header p {
-  text-align: center;
-  color: #AAAAAA;
-}
+    <footer>
+      <p>&copy; 2025 Box Alarm Concepts LLC</p>
+    </footer>
+  </div>
 
-.field-group {
-  margin-bottom: 1.5rem;
-}
+  <script>
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const loadingText = document.getElementById('loading-text');
 
-label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: bold;
-}
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      loadingText.style.display = 'block';
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select,
-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #4A4A4A;
-  border-radius: 8px;
-  background-color: #2A2A2A;
-  color: #F4F4F4;
-  font-size: 1rem;
-}
+      const formData = new FormData(form);
+      const params = new URLSearchParams();
+      for (const pair of formData.entries()) {
+        params.append(pair[0], pair[1]);
+      }
 
-textarea {
-  resize: vertical;
-}
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzsFqiXF-y2AcibsQJazZwdcUNOQ3-p--F9SDlM1a9R5OTtMHemHfES0OFi-nyuCrBp/exec', {
+          method: 'POST',
+          body: params
+        });
 
-.submit-btn {
-  background-color: #D7263D;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  width: 100%;
-}
+        const result = await response.json();
 
-.submit-btn:hover {
-  background-color: #a91e2d;
-}
+        if (result.status === 'success' && result.redirect) {
+          window.location.href = result.redirect;
+        } else {
+          alert('Submission failed. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error submitting the form.');
+      } finally {
+        submitBtn.disabled = false;
+        loadingText.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
