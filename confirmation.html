@@ -28,6 +28,16 @@
       text-decoration: none;
       margin-top: 1.5rem;
     }
+    .ref-id {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #F4F4F4;
+      background-color: #4A4A4A;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -35,6 +45,27 @@
   <h1>Submission Received</h1>
   <p>We’ve logged your request and sent a confirmation to your inbox.</p>
   <p>Our team will review your submission within 48 hours.</p>
+  
+  <div id="refContainer" style="display:none;">
+    <p>Your Reference ID is:</p>
+    <div class="ref-id" id="refId"></div>
+  </div>
+  
   <a class="btn" href="https://www.boxalarmconcepts.com">Back to Home</a>
+
+  <script>
+    // Function to get URL params
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Display Reference ID if present
+    const ref = getQueryParam('ref');
+    if (ref) {
+      document.getElementById('refId').textContent = ref;
+      document.getElementById('refContainer').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
