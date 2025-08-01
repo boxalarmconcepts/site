@@ -1,76 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Box Alarm Concepts | Contact</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="https://boxalarmconcepts.github.io/site/assets/favicon.png" />
-</head>
-<body>
-  <div class="container">
-    <img src="assets/bac-logo.png" alt="Box Alarm Concepts Logo" class="logo" />
+/* Box Alarm Concepts Branding Styles */
 
-    <h1>Custom Order / Contact Form</h1>
-    <p>Get in touch or request a custom quote. We'll get back with you fast.</p>
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    <form id="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <input type="text" name="agency" placeholder="Agency Name (if applicable)" />
-      <select name="status" required>
-        <option value="">Responder or Civilian?</option>
-        <option value="responder">Responder</option>
-        <option value="civilian">Civilian</option>
-      </select>
-      <textarea name="message" placeholder="How can we help you?" required></textarea>
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #0F0F0F; /* Tactical Black */
+  color: #F4F4F4; /* Off-White */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
 
-      <button type="submit" id="submit-btn">Send</button>
-      <p id="loading-text" style="display:none;">Sending...</p>
-    </form>
+.container {
+  max-width: 600px;
+  background-color: #1A1A1A;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  width: 100%;
+  border: 1px solid #4A4A4A; /* Steely Gray */
+}
 
-    <footer>
-      <p>&copy; 2025 Box Alarm Concepts LLC</p>
-    </footer>
-  </div>
+h1, h2, h3 {
+  color: #D7263D; /* Fire Red */
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
-  <script>
-    const form = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const loadingText = document.getElementById('loading-text');
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      loadingText.style.display = 'block';
+label {
+  font-weight: bold;
+  color: #F4F4F4;
+  margin-bottom: 0.5rem;
+  display: block;
+}
 
-      const formData = new FormData(form);
-      const params = new URLSearchParams();
-      for (const pair of formData.entries()) {
-        params.append(pair[0], pair[1]);
-      }
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #4A4A4A;
+  background-color: #2C2C2C;
+  color: #F4F4F4;
+  width: 100%;
+  transition: border 0.3s;
+}
 
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzsFqiXF-y2AcibsQJazZwdcUNOQ3-p--F9SDlM1a9R5OTtMHemHfES0OFi-nyuCrBp/exec', {
-          method: 'POST',
-          body: params
-        });
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #D7263D;
+  outline: none;
+}
 
-        const result = await response.json();
+textarea {
+  min-height: 120px;
+}
 
-        if (result.status === 'success' && result.redirect) {
-          window.location.href = result.redirect;
-        } else {
-          alert('Submission failed. Please try again.');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('There was an error submitting the form.');
-      } finally {
-        submitBtn.disabled = false;
-        loadingText.style.display = 'none';
-      }
-    });
-  </script>
-</body>
-</html>
+button[type="submit"] {
+  background-color: #D7263D;
+  color: #F4F4F4;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #a71d2e;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 1.5rem;
+  max-width: 180px;
+  height: auto;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #AAAAAA;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+}
