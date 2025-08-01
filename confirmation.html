@@ -2,145 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Submission Confirmation | Box Alarm Concepts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Helvetica&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submission Received</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Helvetica', sans-serif;
-      background: #0F0F0F;
+      background-color: #0F0F0F;
       color: #F4F4F4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 0 20px rgba(215, 38, 61, 0.8);
+      font-family: Helvetica, sans-serif;
       text-align: center;
+      padding: 2rem;
     }
-    img.logo {
-      max-width: 180px;
-      margin-bottom: 1.25rem;
+    .logo {
+      max-width: 220px;
+      margin-bottom: 1rem;
     }
     h1 {
-      font-weight: 700;
-      font-size: 1.9rem;
-      margin-bottom: 0.3rem;
       color: #D7263D;
     }
-    p {
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.6;
-      margin: 0.5rem 0 1rem;
-    }
-    .ref-id {
-      background-color: #1C1C1C;
-      border-left: 5px solid #D7263D;
-      padding: 1rem;
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin: 1rem 0;
-      word-break: break-word;
-    }
-    .inquiry {
-      font-style: italic;
-      margin-bottom: 1rem;
-      color: #aaa;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
     .btn {
+      display: inline-block;
       background-color: #D7263D;
       color: white;
-      border: none;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
       text-decoration: none;
-      transition: background-color 0.3s ease;
-      min-width: 140px;
-    }
-    .btn:hover {
-      background-color: #a91e2f;
-    }
-    .social-links {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #F4F4F4;
-    }
-    .social-links a {
-      color: #F4F4F4;
-      margin: 0 0.6rem;
-      text-decoration: underline;
-    }
-    footer {
-      margin-top: 2.5rem;
-      font-size: 0.75rem;
-      color: #777;
+      margin-top: 1.5rem;
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <img
-      src="https://raw.githubusercontent.com/boxalarmconcepts/site/main/assets/boxalarm-logo.png"
-      alt="Box Alarm Concepts Logo"
-      class="logo"
-      loading="lazy"
-    />
-    <h1>Submission Received</h1>
-    <p>We’ve logged your request and sent a confirmation to your inbox.</p>
-
-    <div class="inquiry" id="inquiryText">“Loading inquiry...”</div>
-
-    <div class="ref-id">Reference ID: <span id="refID">Loading...</span></div>
-    <p>Keep this Reference ID safe — you’ll need it to follow up or track your request.</p>
-
-    <p>Our team will review your submission within 48 hours.</p>
-
-    <div class="buttons">
-      <a href="https://forms.gle/xzNtM2PgJFq44ScJ6" target="_blank" rel="noopener" class="btn">Submit Another</a>
-      <a href="https://www.boxalarmconcepts.com" target="_blank" rel="noopener" class="btn">Main Site</a>
-    </div>
-
-    <div class="social-links">
-      Follow us: 
-      <a href="https://facebook.com/boxalarmconcepts" target="_blank" rel="noopener">Facebook</a> | 
-      <a href="https://instagram.com/boxalarmconcepts" target="_blank" rel="noopener">Instagram</a> | 
-      <a href="https://twitter.com/boxalarmconcept" target="_blank" rel="noopener">X</a>
-    </div>
-
-    <footer>
-      &copy; 2025 Box Alarm Concepts LLC | London, KY<br />
-      Built by responders, for responders. No fluff. No shortcuts.
-    </footer>
-  </main>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get('ref');
-    const inquiry = params.get('inquiry');
-
-    document.getElementById('refID').textContent = ref || 'Unavailable';
-    document.getElementById('inquiryText').textContent = inquiry
-      ? `You contacted us about: "${inquiry}"`
-      : 'No inquiry details provided.';
-  </script>
+  <img class="logo" src="https://github.com/boxalarmconcepts/site/blob/main/assets/boxalarm-logo.png?raw=true" alt="Box Alarm Concepts Logo" />
+  <h1>Submission Received</h1>
+  <p>We’ve logged your request and sent a confirmation to your inbox.</p>
+  <p>Our team will review your submission within 48 hours.</p>
+  <a class="btn" href="https://www.boxalarmconcepts.com">Back to Home</a>
 </body>
 </html>
