@@ -2,69 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Submission Received</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submission Received | Box Alarm Concepts</title>
   <style>
     body {
       background-color: #0F0F0F;
       color: #F4F4F4;
       font-family: Helvetica, sans-serif;
       text-align: center;
-      padding: 2rem;
+      padding: 3rem 1.5rem;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     .logo {
-      max-width: 220px;
-      margin-bottom: 1rem;
+      max-width: 200px;
+      margin-bottom: 1.5rem;
     }
     h1 {
       color: #D7263D;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
-    .btn {
-      display: inline-block;
-      background-color: #D7263D;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
+    p {
+      font-size: 1.15rem;
+      margin: 0.5rem 0;
+      max-width: 400px;
+      line-height: 1.4;
+    }
+    .ref-id-container {
       margin-top: 1.5rem;
-    }
-    .ref-id {
-      margin-top: 1rem;
+      padding: 1rem 1.5rem;
+      background-color: #4A4A4A;
+      border-radius: 10px;
       font-weight: bold;
       font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      user-select: all;
       color: #F4F4F4;
-      background-color: #4A4A4A;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
+    }
+    a.btn-home {
       display: inline-block;
-      word-break: break-all;
+      margin-top: 2rem;
+      background-color: #D7263D;
+      color: #F4F4F4;
+      text-decoration: none;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    a.btn-home:hover {
+      background-color: #a91e2d;
     }
   </style>
 </head>
 <body>
-  <img class="logo" src="https://github.com/boxalarmconcepts/site/blob/main/assets/boxalarm-logo.png?raw=true" alt="Box Alarm Concepts Logo" />
+  <img class="logo" src="logo.png" alt="Box Alarm Concepts Logo" />
   <h1>Submission Received</h1>
-  <p>We’ve logged your request and sent a confirmation to your inbox.</p>
-  <p>Our team will review your submission within 48 hours.</p>
-  
-  <div id="refContainer" style="display:none;">
-    <p>Your Reference ID is:</p>
-    <div class="ref-id" id="refId" aria-live="polite"></div>
+  <p>Thank you for reaching out! We've logged your request and sent a confirmation to your inbox.</p>
+  <p>Our team will review your submission within 48 hours and get back to you.</p>
+
+  <div id="refIdContainer" class="ref-id-container" style="display:none;">
+    Your Reference ID:<br />
+    <span id="refId"></span>
   </div>
-  
-  <a class="btn" href="https://www.boxalarmconcepts.com">Back to Home</a>
+
+  <a href="https://www.boxalarmconcepts.com" class="btn-home">Back to Home</a>
 
   <script>
-    // Get the value of the given query parameter from the URL
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-
-    // Show Reference ID if present in URL, else optionally show a fallback message
-    const ref = getQueryParam('ref');
-    if (ref && ref.trim() !== '') {
-      const refContainer = document.getElementById('refContainer');
+    // Grab 'ref' param from URL and display it if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    if (ref) {
+      const refContainer = document.getElementById('refIdContainer');
       const refIdElem = document.getElementById('refId');
       refIdElem.textContent = ref;
       refContainer.style.display = 'block';
