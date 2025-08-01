@@ -122,21 +122,25 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const data = new FormData(form);
-      const response = await fetch("https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec", {
-        method: "POST",
-        body: data,
-      });
-    if (response.ok) {
-  const json = await response.json();
-  if (json.redirect) {
-    window.location.href = json.redirect;
-  } else {
-    window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
-  }
-}
 
-      } else {
-        alert("Submission failed. Please try again.");
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec", {
+          method: "POST",
+          body: data,
+        });
+
+        if (response.ok) {
+          const json = await response.json();
+          if (json.redirect) {
+            window.location.href = json.redirect;
+          } else {
+            window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
+          }
+        } else {
+          alert("Submission failed. Please try again.");
+        }
+      } catch (error) {
+        alert("There was an error submitting the form: " + error.message);
       }
     });
 
@@ -147,6 +151,7 @@
 
       responderFields.style.display = (status === 'Responder') ? 'block' : 'none';
       civilianFields.style.display = (status === 'Civilian') ? 'block' : 'none';
+      fireFields.style.display = 'none'; // Reset fireFields on status change
     }
 
     document.querySelector('select[name="responderType"]').addEventListener('change', (e) => {
