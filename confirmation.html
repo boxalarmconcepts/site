@@ -37,6 +37,7 @@
       padding: 0.5rem 1rem;
       border-radius: 6px;
       display: inline-block;
+      word-break: break-all;
     }
   </style>
 </head>
@@ -48,23 +49,25 @@
   
   <div id="refContainer" style="display:none;">
     <p>Your Reference ID is:</p>
-    <div class="ref-id" id="refId"></div>
+    <div class="ref-id" id="refId" aria-live="polite"></div>
   </div>
   
   <a class="btn" href="https://www.boxalarmconcepts.com">Back to Home</a>
 
   <script>
-    // Function to get URL params
+    // Get the value of the given query parameter from the URL
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
 
-    // Display Reference ID if present
+    // Show Reference ID if present in URL, else optionally show a fallback message
     const ref = getQueryParam('ref');
-    if (ref) {
-      document.getElementById('refId').textContent = ref;
-      document.getElementById('refContainer').style.display = 'block';
+    if (ref && ref.trim() !== '') {
+      const refContainer = document.getElementById('refContainer');
+      const refIdElem = document.getElementById('refId');
+      refIdElem.textContent = ref;
+      refContainer.style.display = 'block';
     }
   </script>
 </body>
