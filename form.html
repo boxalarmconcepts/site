@@ -1,265 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Contact Box Alarm Concepts</title>
-<style>
-  body {
-    background-color: #0F0F0F;
-    color: #F4F4F4;
-    font-family: Helvetica, sans-serif;
-    padding: 2rem;
-    max-width: 700px;
-    margin: auto;
-  }
-  h1 {
-    text-align: center;
-    color: #D7263D;
-  }
-  form {
-    background: #1A1A1A;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(215, 38, 61, 0.6);
-  }
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: bold;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 0.7rem;
-    margin-top: 0.3rem;
-    border-radius: 6px;
-    border: none;
-    background-color: #333;
-    color: #F4F4F4;
-    font-size: 1rem;
-    box-sizing: border-box;
-  }
-  textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-  .checkbox-group, .radio-group {
-    margin-top: 0.5rem;
-  }
-  .checkbox-group label, .radio-group label {
-    font-weight: normal;
-    display: block;
-    margin-bottom: 0.3rem;
-    cursor: pointer;
-  }
-  button {
-    background-color: #D7263D;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-top: 2rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    width: 100%;
-  }
-  button:hover {
-    background-color: #a81e30;
-  }
-  .section {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #4A4A4A;
-  }
-  .hidden {
-    display: none;
-  }
-  .note {
-    font-size: 0.85rem;
-    color: #999;
-    margin-top: 0.5rem;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Box Alarm Concepts</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="form-container">
+    <img src="assets/boxalarm-logo.png" alt="Box Alarm Concepts Logo" class="logo" />
 
-<h1>Contact Box Alarm Concepts</h1>
+    <h1>Contact Box Alarm Concepts</h1>
+    <form id="contact-form" action="https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec" method="POST">
+      
+      <label>Name:</label>
+      <input type="text" name="name" required>
 
-<form id="bacForm" method="POST" action="https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec">
+      <label>Email:</label>
+      <input type="email" name="email" required>
 
-  <!-- Basic Info -->
-  <label for="name">Full Name *</label>
-  <input type="text" id="name" name="name" required />
+      <label>Phone Number (optional):</label>
+      <input type="text" name="phone">
 
-  <label for="email">Email Address *</label>
-  <input type="email" id="email" name="email" required />
+      <label>Preferred Contact Method:</label>
+      <label><input type="radio" name="contact_method" value="Email" checked> Email</label>
+      <label><input type="radio" name="contact_method" value="Phone"> Phone</label>
+      <label><input type="radio" name="contact_method" value="Either"> Either</label>
 
-  <label for="preferredContact">Preferred Contact Method *</label>
-  <select id="preferredContact" name="preferredContact" required>
-    <option value="" disabled selected>Select one</option>
-    <option value="Email">Email</option>
-    <option value="Phone">Phone</option>
-    <option value="Either">Either</option>
-  </select>
-
-  <label for="phone" id="phoneLabel" class="hidden">Phone Number</label>
-  <input type="tel" id="phone" name="phone" class="hidden" placeholder="Include area code" />
-
-  <!-- Contact Type -->
-  <label for="contactType">What best describes your message? *</label>
-  <select id="contactType" name="contactType" required>
-    <option value="" disabled selected>Select one</option>
-    <option value="Support Request">Support Request</option>
-    <option value="Custom Order">Custom Order</option>
-    <option value="New Product Idea">New Product Idea</option>
-    <option value="Partnership Opportunity">Partnership Opportunity</option>
-    <option value="General Feedback">General Feedback</option>
-  </select>
-
-  <!-- Dynamic Sections -->
-
-  <!-- Support Request -->
-  <div id="supportSection" class="section hidden">
-    <label for="supportIssue">Please describe the issue you are experiencing *</label>
-    <textarea id="supportIssue" name="supportIssue"></textarea>
-  </div>
-
-  <!-- Custom Order -->
-  <div id="customOrderSection" class="section hidden">
-    <label for="customOrderDescription">Describe your custom order *</label>
-    <textarea id="customOrderDescription" name="customOrderDescription"></textarea>
-  </div>
-
-  <!-- New Product Idea -->
-  <div id="newIdeaSection" class="section hidden">
-    <label for="ideaDescription">Explain your product idea *</label>
-    <textarea id="ideaDescription" name="ideaDescription"></textarea>
-    <label for="betaTesterInterest" class="checkbox-group">
-      <input type="checkbox" id="betaTesterInterest" name="betaTesterInterest" value="Yes" />
-      I am interested in being a beta tester
-    </label>
-  </div>
-
-  <!-- Partnership Opportunity -->
-  <div id="partnershipSection" class="section hidden">
-    <label for="partnerOrgName">Organization / Brand Name *</label>
-    <input type="text" id="partnerOrgName" name="partnerOrgName" />
-
-    <label for="partnerWebsite">Website or Social Link *</label>
-    <input type="text" id="partnerWebsite" name="partnerWebsite" />
-
-    <label for="partnershipDescription">Describe your proposal *</label>
-    <textarea id="partnershipDescription" name="partnershipDescription"></textarea>
-  </div>
-
-  <!-- General Feedback -->
-  <div id="feedbackSection" class="section hidden">
-    <label for="feedbackMessage">Your feedback or comments *</label>
-    <textarea id="feedbackMessage" name="feedbackMessage"></textarea>
-    <label for="betaTesterFeedbackInterest" class="checkbox-group">
-      <input type="checkbox" id="betaTesterFeedbackInterest" name="betaTesterInterest" value="Yes" />
-      I am interested in being a beta tester
-    </label>
-  </div>
-
-  <!-- Demographic Section -->
-  <div class="section">
-    <h3>About You (Optional)</h3>
-    <label for="userType">I am a… *</label>
-    <select id="userType" name="userType" required>
-      <option value="" disabled selected>Select one</option>
-      <option value="Responder">Responder</option>
-      <option value="Civilian">Civilian</option>
-      <option value="Both">Both</option>
-    </select>
-
-    <!-- Responder Specific -->
-    <div id="responderSection" class="hidden">
-      <label>Type of Responder (check all that apply):</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="responderType" value="Fire" /> Fire</label>
-        <label><input type="checkbox" name="responderType" value="EMS" /> EMS</label>
-        <label><input type="checkbox" name="responderType" value="Law Enforcement" /> Law Enforcement</label>
-        <label><input type="checkbox" name="responderType" value="Military" /> Military</label>
-        <label><input type="checkbox" name="responderType" value="Dispatcher" /> Dispatcher</label>
-        <label><input type="checkbox" name="responderType" value="Other" /> Other</label>
-      </div>
-
-      <label for="agencyName">Agency / Department Name</label>
-      <input type="text" id="agencyName" name="agencyName" />
-
-      <label for="agencySize">Agency / Department Size</label>
-      <select id="agencySize" name="agencySize">
-        <option value="" disabled selected>Select one</option>
-        <option value="Solo">Solo</option>
-        <option value="Less than 10">Less than 10</option>
-        <option value="10-50">10-50</option>
-        <option value="More than 50">More than 50</option>
+      <label>Contact Type:</label>
+      <select name="contact_type" required>
+        <option value="Custom Order">Custom Order</option>
+        <option value="Product Question">Product Question</option>
+        <option value="Suggestion">Suggestion</option>
+        <option value="General Inquiry">General Inquiry</option>
+        <option value="Other">Other</option>
       </select>
-    </div>
 
-    <!-- Civilian Specific -->
-    <div id="civilianSection" class="hidden">
-      <label for="civilianInterest">As a civilian, I am interested in (check all that apply):</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="civilianInterest" value="Prepper" /> Prepper</label>
-        <label><input type="checkbox" name="civilianInterest" value="Maker/DIY" /> Maker/DIY</label>
-        <label><input type="checkbox" name="civilianInterest" value="Mental Resilience" /> Mental Resilience</label>
-        <label><input type="checkbox" name="civilianInterest" value="Supporting Responders" /> Supporting Responders</label>
-        <label><input type="checkbox" name="civilianInterest" value="Tactical Gear" /> Tactical Gear</label>
-        <label><input type="checkbox" name="civilianInterest" value="Other" /> Other</label>
+      <label>Are you a responder or civilian?</label>
+      <label><input type="radio" name="responder_status" value="Responder" onclick="toggleResponder(true)"> Responder</label>
+      <label><input type="radio" name="responder_status" value="Civilian" onclick="toggleResponder(false)"> Civilian</label>
+
+      <div id="responder-section" style="display:none;">
+        <label>Type of Responder:</label>
+        <select name="responder_type" onchange="toggleFireFields(this.value)">
+          <option value="">Select</option>
+          <option value="Fire">Fire</option>
+          <option value="EMS">EMS</option>
+          <option value="LEO">LEO</option>
+          <option value="Dispatch">Dispatch</option>
+          <option value="Military">Military</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <div id="fire-options" style="display:none;">
+          <label>Career or Volunteer:</label>
+          <label><input type="radio" name="fire_type" value="Career"> Career</label>
+          <label><input type="radio" name="fire_type" value="Volunteer"> Volunteer</label>
+          <label><input type="radio" name="fire_type" value="Both"> Both</label>
+        </div>
+
+        <label>Agency Name:</label>
+        <input type="text" name="agency_name">
+
+        <label>Agency Size:</label>
+        <input type="number" name="agency_size" min="1">
       </div>
-    </div>
+
+      <div id="civilian-section" style="display:none;">
+        <label>Do you consider yourself a prepper?</label>
+        <label><input type="radio" name="prepper" value="Yes"> Yes</label>
+        <label><input type="radio" name="prepper" value="No"> No</label>
+        <label><input type="radio" name="prepper" value="Somewhat"> Somewhat</label>
+      </div>
+
+      <label>Message / Details:</label>
+      <textarea name="message" required></textarea>
+
+      <label>Are you interested in beta testing?</label>
+      <label><input type="radio" name="beta" value="Yes"> Yes</label>
+      <label><input type="radio" name="beta" value="No" checked> No</label>
+
+      <button type="submit">Submit</button>
+    </form>
   </div>
 
-  <button type="submit">Send It</button>
+  <script>
+    function toggleResponder(isResponder) {
+      document.getElementById("responder-section").style.display = isResponder ? "block" : "none";
+      document.getElementById("civilian-section").style.display = isResponder ? "none" : "block";
+    }
 
-  <p class="note">* Required fields</p>
-</form>
-
-<script>
-  // Helper to show/hide sections
-  function toggleVisibility(id, show) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.toggle('hidden', !show);
-  }
-
-  // Phone input toggling based on preferred contact method
-  document.getElementById('preferredContact').addEventListener('change', function() {
-    const val = this.value;
-    const showPhone = (val === 'Phone' || val === 'Either');
-    toggleVisibility('phone', showPhone);
-    toggleVisibility('phoneLabel', showPhone);
-    document.getElementById('phone').required = showPhone;
-  });
-
-  // Contact type dynamic sections
-  document.getElementById('contactType').addEventListener('change', function() {
-    const val = this.value;
-    // Hide all first
-    ['supportSection','customOrderSection','newIdeaSection','partnershipSection','feedbackSection']
-      .forEach(id => toggleVisibility(id, false));
-
-    // Show the right section
-    if(val === 'Support Request') toggleVisibility('supportSection', true);
-    else if(val === 'Custom Order') toggleVisibility('customOrderSection', true);
-    else if(val === 'New Product Idea') toggleVisibility('newIdeaSection', true);
-    else if(val === 'Partnership Opportunity') toggleVisibility('partnershipSection', true);
-    else if(val === 'General Feedback') toggleVisibility('feedbackSection', true);
-  });
-
-  // User type dynamic sections
-  document.getElementById('userType').addEventListener('change', function() {
-    const val = this.value;
-    toggleVisibility('responderSection', val === 'Responder' || val === 'Both');
-    toggleVisibility('civilianSection', val === 'Civilian' || val === 'Both');
-  });
-</script>
-
+    function toggleFireFields(value) {
+      const fireOptions = document.getElementById("fire-options");
+      fireOptions.style.display = (value === "Fire") ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
