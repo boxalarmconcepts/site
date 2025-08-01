@@ -1,73 +1,85 @@
+<!-- Responder Status -->
+<label for="responderStatus">Are you a responder or civilian?</label>
+<select name="responderStatus" id="responderStatus" required onchange="toggleResponderFields(this.value)">
+  <option value="" disabled selected>Select responder status</option>
+  <option value="Responder">Responder</option>
+  <option value="Civilian">Civilian</option>
+</select>
+
+<!-- Responder Fields -->
+<div id="responderFields" style="display: none; margin-top: 10px;">
+  <label for="responderType">Type of Responder</label>
+  <select name="responderType" id="responderType" onchange="toggleFireFields(this.value)">
+    <option value="" disabled selected>Select responder type</option>
+    <option value="Fire">Fire</option>
+    <option value="EMS">EMS</option>
+    <option value="LEO">Law Enforcement</option>
+    <option value="Military">Military</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
+
+<!-- Civilian Fields -->
+<div id="civilianFields" style="display: none; margin-top: 10px;">
+  <label for="prepperStatus">Are you a preparedness-minded civilian?</label>
+  <select name="prepperStatus" id="prepperStatus">
+    <option value="" disabled selected>Select prepper status</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="Somewhat">Somewhat</option>
+  </select>
+</div>
+
+<!-- Fire-Specific Fields -->
+<div id="fireFields" style="display: none; margin-top: 10px;">
+  <label for="fireCareerType">Career or Volunteer?</label>
+  <select name="fireCareerType" id="fireCareerType">
+    <option value="" disabled selected>Select career type</option>
+    <option value="Career">Career</option>
+    <option value="Volunteer">Volunteer</option>
+    <option value="Combination">Combination</option>
+  </select>
+</div>
+
+<!-- JavaScript Logic -->
 <script>
+  const responderFields = document.getElementById('responderFields');
+  const civilianFields = document.getElementById('civilianFields');
+  const fireFields = document.getElementById('fireFields');
+  const responderTypeSelect = document.getElementById('responderType');
+
+  function toggleResponderFields(status) {
+    if (status === 'Responder') {
+      responderFields.style.display = 'block';
+      civilianFields.style.display = 'none';
+    } else if (status === 'Civilian') {
+      responderFields.style.display = 'none';
+      civilianFields.style.display = 'block';
+    } else {
+      responderFields.style.display = 'none';
+      civilianFields.style.display = 'none';
+    }
+
+    // Reset nested logic when switching
+    responderTypeSelect.value = '';
+    toggleFireFields('');
+  }
+
+  function toggleFireFields(type) {
+    if (type === 'Fire') {
+      fireFields.style.display = 'block';
+    } else {
+      fireFields.style.display = 'none';
+    }
+  }
+
+  // Ensure form is reset to clean state on load
   window.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contactForm');
-    const responderStatusSelect = document.querySelector('select[name="responderStatus"]');
-    const responderTypeSelect = document.querySelector('select[name="responderType"]');
-    const responderFields = document.getElementById('responderFields');
-    const civilianFields = document.getElementById('civilianFields');
-    const fireFields = document.getElementById('fireFields');
-
-    function toggleResponderFields(status) {
-      if (status === 'Responder') {
-        responderFields.style.display = 'block';
-        civilianFields.style.display = 'none';
-      } else if (status === 'Civilian') {
-        responderFields.style.display = 'none';
-        civilianFields.style.display = 'block';
-      } else {
-        responderFields.style.display = 'none';
-        civilianFields.style.display = 'none';
-      }
-      // Reset responderType and hide fire fields when responderFields hidden
-      if (responderFields.style.display === 'none') {
-        responderTypeSelect.value = '';
-        fireFields.style.display = 'none';
-      }
-    }
-
-    function toggleFireFields(type) {
-      if (type === 'Fire') {
-        fireFields.style.display = 'block';
-      } else {
-        fireFields.style.display = 'none';
-      }
-    }
-
-    // Initialize visibility on load
-    toggleResponderFields(responderStatusSelect.value);
-    toggleFireFields(responderTypeSelect.value);
-
-    // Event listeners
-    responderStatusSelect.addEventListener('change', (e) => {
-      toggleResponderFields(e.target.value);
-    });
-
-    responderTypeSelect.addEventListener('change', (e) => {
-      toggleFireFields(e.target.value);
-    });
-
-    // Submit handler
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbyYa5_3wS_HEGIdKEhDEkT1Ufry2YoT3dmWwn9UJZegOoCzygbeQPnLoKxEWi_Pu1Mw/exec", {
-          method: "POST",
-          body: data,
-        });
-        if (response.ok) {
-          const json = await response.json();
-          if (json.redirect) {
-            window.location.href = json.redirect;
-          } else {
-            window.location.href = "https://boxalarmconcepts.github.io/site/confirmation.html";
-          }
-        } else {
-          alert("Submission failed. Please try again.");
-        }
-      } catch (error) {
-        alert("There was an error submitting the form: " + error.message);
-      }
-    });
+    document.getElementById('responderStatus').value = '';
+    responderTypeSelect.value = '';
+    document.getElementById('prepperStatus').value = '';
+    document.getElementById('fireCareerType').value = '';
+    toggleResponderFields('');
+    toggleFireFields('');
   });
 </script>
